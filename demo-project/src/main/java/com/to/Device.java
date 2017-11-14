@@ -7,6 +7,9 @@ public class Device {
 	private String deviceDescription;
 	private String deviceIp;
 
+	public Device() {
+	}
+
 	public Device(String deviceId, String deviceName, String deviceDescription,
 			String deviceIp) {
 		this.deviceId = deviceId;
