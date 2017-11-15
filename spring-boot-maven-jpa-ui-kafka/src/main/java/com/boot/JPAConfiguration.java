@@ -1,5 +1,7 @@
 package com.boot;
 
+import java.util.Properties;
+
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -23,22 +25,18 @@ public class JPAConfiguration {
 	private Environment environment;
 
 	/*
-	 * Populate SpringBoot DataSourceProperties object directly from
-	 * application.yml based on prefix.Thanks to .yml, Hierachical data is
-	 * mapped out of the box with matching-name properties of
-	 * DataSourceProperties object].
+	 * Populate SpringBoot DataSourceProperties object directly from application.yml
+	 * based on prefix.Thanks to .yml, Hierachical data is mapped out of the box
+	 * with matching-name properties of DataSourceProperties object].
 	 */
 
 	@Bean
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl(environment
-				.getRequiredProperty("spring.datasource.url"));
-		dataSource.setUsername(environment
-				.getRequiredProperty("spring.datasource.username"));
-		dataSource.setPassword(environment
-				.getRequiredProperty("spring.datasource.password"));
+		dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
+		dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
+		dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
 		return dataSource;
 	}
 
@@ -46,13 +44,12 @@ public class JPAConfiguration {
 	 * Entity Manager Factory setup.
 	 */
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory()
-			throws NamingException {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
 		factoryBean.setPackagesToScan(new String[] { "com.model" });
 		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-		// factoryBean.setJpaProperties(jpaProperties());
+		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;
 	}
 
@@ -68,20 +65,23 @@ public class JPAConfiguration {
 	/*
 	 * Here you can specify any provider specific properties.
 	 */
-	/*
-	 * private Properties jpaProperties() { Properties properties = new
-	 * Properties(); properties.put("hibernate.dialect",
-	 * environment.getRequiredProperty
-	 * ("datasource.sampleapp.hibernate.dialect"));
-	 * properties.put("hibernate.hbm2ddl.auto",
-	 * environment.getRequiredProperty("spring.jpa.hibernate.ddl-auto"));
-	 * properties.put("hibernate.show_sql",
-	 * environment.getRequiredProperty("datasource.sampleapp.hibernate.show_sql"
-	 * )); properties.put("hibernate.format_sql",
-	 * environment.getRequiredProperty
-	 * ("datasource.sampleapp.hibernate.format_sql"));
-	 * 
-	 * return properties; }
-	 */
+	private Properties jpaProperties() {
+		Properties properties = new Properties();
+		// properties.put("spring.datasource.url",
+		// "jdbc:mysql://localhost:3306/spring_boot");
+		// properties.put("spring.datasource.username", "root");
+		// properties.put("spring.datasource.password", "root");
+		// properties.put("hibernate.dialect",
+		// environment.getRequiredProperty("datasource.sampleapp.hibernate.dialect"));
+		// properties.put("hibernate.hbm2ddl.auto",
+		// environment.getRequiredProperty("spring.jpa.hibernate.ddl-auto"));
+		// properties.put("hibernate.show_sql",
+		// environment.getRequiredProperty("datasource.sampleapp.hibernate.show_sql"));
+		// properties.put("hibernate.format_sql",
+		// environment.getRequiredProperty("datasource.sampleapp.hibernate.format_sql"));
+		properties.put("hibernate.hbm2ddl.auto", "create");
+
+		return properties;
+	}
 
 }
