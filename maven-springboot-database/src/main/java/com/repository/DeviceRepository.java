@@ -1,9 +1,10 @@
 package com.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.to.Device;
+import com.model.Device;
 
-public interface DeviceRepository extends CrudRepository<Device, String> {
 
+public interface DeviceRepository extends JpaRepository<Device, Integer> {
+	
 }

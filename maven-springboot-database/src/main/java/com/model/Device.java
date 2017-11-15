@@ -1,13 +1,18 @@
-package com.to;
+package com.model;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Device {
 
 	@Id
-	private String deviceId;
+    @GeneratedValue
+    @Column(name = "id")
+	private int deviceId;
 	private String deviceName;
 	private String deviceDescription;
 	private String deviceIp;
@@ -15,19 +20,11 @@ public class Device {
 	public Device() {
 	}
 
-	public Device(String deviceId, String deviceName, String deviceDescription,
-			String deviceIp) {
-		this.deviceId = deviceId;
-		this.deviceName = deviceName;
-		this.deviceDescription = deviceDescription;
-		this.deviceIp = deviceIp;
-	}
-
-	public String getDeviceId() {
+	public int getDeviceId() {
 		return deviceId;
 	}
 
-	public void setDeviceId(String deviceId) {
+	public void setDeviceId(int deviceId) {
 		this.deviceId = deviceId;
 	}
 

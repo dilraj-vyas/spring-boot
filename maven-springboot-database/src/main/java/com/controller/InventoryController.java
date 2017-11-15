@@ -3,20 +3,16 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.model.Device;
 import com.service.DeviceService;
-import com.to.Device;
 
 @RestController
-@ComponentScan(basePackages = { "com.service" })
 public class InventoryController {
 
 	@Autowired(required = true)
@@ -28,7 +24,7 @@ public class InventoryController {
 	}
 
 	@RequestMapping("/device/{id}")
-	public Device getdeviceById(@PathVariable String id) {
+	public Device getdeviceById(@PathVariable int id) {
 		return deviceService.getDevice(id);
 	}
 
@@ -43,7 +39,7 @@ public class InventoryController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/devices/{id}")
-	public void deleteDevice(@PathVariable String id) {
+	public void deleteDevice(@PathVariable int id) {
 		deviceService.deleteDevice(id);
 	}
 }
