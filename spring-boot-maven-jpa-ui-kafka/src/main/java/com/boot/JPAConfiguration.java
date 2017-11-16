@@ -25,18 +25,22 @@ public class JPAConfiguration {
 	private Environment environment;
 
 	/*
-	 * Populate SpringBoot DataSourceProperties object directly from application.yml
-	 * based on prefix.Thanks to .yml, Hierachical data is mapped out of the box
-	 * with matching-name properties of DataSourceProperties object].
+	 * Populate SpringBoot DataSourceProperties object directly from
+	 * application.yml based on prefix.Thanks to .yml, Hierachical data is
+	 * mapped out of the box with matching-name properties of
+	 * DataSourceProperties object].
 	 */
 
 	@Bean
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
-		dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
-		dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
+		dataSource.setUrl(environment
+				.getRequiredProperty("spring.datasource.url"));
+		dataSource.setUsername(environment
+				.getRequiredProperty("spring.datasource.username"));
+		dataSource.setPassword(environment
+				.getRequiredProperty("spring.datasource.password"));
 		return dataSource;
 	}
 
@@ -44,7 +48,8 @@ public class JPAConfiguration {
 	 * Entity Manager Factory setup.
 	 */
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory()
+			throws NamingException {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
 		factoryBean.setPackagesToScan(new String[] { "com.model" });
