@@ -16,8 +16,9 @@ public class DeviceController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String showWelcomePage(ModelMap model, @RequestParam String name,
-			@RequestParam String password) {
+	public String showWelcomePage(ModelMap model,
+			@RequestParam String nodeName, @RequestParam String ipAddress,
+			@RequestParam String terminalIp, String port) {
 
 		// // boolean isValidUser = service.validateUser(name, password);
 		//
@@ -26,8 +27,10 @@ public class DeviceController {
 		// return "login";
 		// }
 		//
-		model.put("name", name);
-		model.put("password", password);
+		model.put("nodeName", nodeName);
+		model.put("ipAddress", ipAddress);
+		model.put("terminalIp", terminalIp);
+		model.put("port", port);
 
 		return "welcome";
 	}

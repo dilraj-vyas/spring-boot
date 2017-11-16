@@ -1,4 +1,4 @@
-package com.boot;
+package com;
 
 import java.util.Properties;
 

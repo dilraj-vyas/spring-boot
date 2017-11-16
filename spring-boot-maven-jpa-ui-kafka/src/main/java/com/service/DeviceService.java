@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.model.Device;
@@ -24,7 +25,7 @@ public class DeviceService {
 	}
 
 	public List<Device> getAllDevices() {
-
+		
 		List<Device> devices = new ArrayList<Device>();
 		Iterable<Device> itr = deviceRepository.findAll();
 		for (Device device : itr) {
