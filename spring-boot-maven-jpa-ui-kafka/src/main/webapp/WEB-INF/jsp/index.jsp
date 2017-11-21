@@ -1,6 +1,16 @@
 <html>
 
 <head>
+<style type="text/css">
+table {
+	position: relative;
+	top: 200px;
+	left: 500px;
+	right: 500px;
+	bottom: 500px;
+}
+</style>
+
 </head>
 
 <body>
@@ -14,6 +24,7 @@
 					<td>Node Name</td>
 					<td><input type="text" name="nodeName" /></td>
 				</tr>
+				
 				<tr>
 					<td>Ip Address</td>
 					<td><input type="text" name="ipAddress" /></td>
@@ -29,10 +40,10 @@
 					<td><input type="text" name="port" /></td>
 				</tr>
 				<tr>
-				<td></td>
+					<td></td>
 				</tr>
 				<tr>
-					<td align="center" colspan="3"><input  type="submit" /></td>
+					<td align="center" colspan="3"><input type="submit" /></td>
 				</tr>
 			</tbody>
 		</table>
