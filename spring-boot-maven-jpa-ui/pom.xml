@@ -5,7 +5,7 @@
 	<artifactId>spring-boot-maven-jpa-ui-kafka</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>spring-boot-maven-jpa-ui-kafka</name>
+	<name>spring-boot-maven-jpa-table-per-sub-class</name>
 
 
 	<parent>
