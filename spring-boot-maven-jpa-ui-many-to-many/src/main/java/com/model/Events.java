@@ -1,17 +1,11 @@
 package com.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "events")
 public class Events {
@@ -21,25 +15,20 @@ public class Events {
 	private int eventId;
 	private String eventName;
 
-	/*@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "eventId") }, inverseJoinColumns = {
-			@JoinColumn(name = "pId") })*/
-	@ManyToMany(mappedBy="events")
-	private Collection<Person> persons=new ArrayList<Person>();
+	
+	
+//	@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "eventId") }, inverseJoinColumns = { @JoinColumn(name = "pId") })
+	@ManyToMany(mappedBy = "events")
+	private Collection<Person> persons;
 
 	public Events() {
 	}
 
-	
-	
 	public Events(String eventName) {
 		super();
 		this.eventName = eventName;
 	}
 
-	
-	
 	public int getEventId() {
 		return eventId;
 	}
@@ -63,8 +52,5 @@ public class Events {
 	public void setPersons(Collection<Person> persons) {
 		this.persons = persons;
 	}
-	
-	
-	
-	
+
 }

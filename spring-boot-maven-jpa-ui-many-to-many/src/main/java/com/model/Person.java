@@ -1,6 +1,5 @@
 package com.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -9,27 +8,42 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "person")
 public class Person {
-
+	
+	
 	@Id
 	@GeneratedValue
 	private int pId;
 	private String name;
 	private Long mobileNo;
 
-	/*@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "pId") }, inverseJoinColumns = {
+	/*@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "pId") }, inverseJoinColumns = {
 			@JoinColumn(name = "eventId") })*/
 	@ManyToMany(cascade= CascadeType.ALL)
-	private Collection<Events> events=new ArrayList<Events>();
+	@JsonIgnore
+	private Collection<Events> events;
+	
 	public Person(String name, Long mobileNo) {
 		super();
 		this.name = name;
 		this.mobileNo = mobileNo;
 	}
 
-	
+	public Person() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Person(String name, Long mobileNo, Collection<Events> events) {
+		super();
+		this.name = name;
+		this.mobileNo = mobileNo;
+		this.events = events;
+	}
+
+
 
 	public int getpId() {
 		return pId;
@@ -56,6 +70,7 @@ public class Person {
 	}
 
 	public Collection<Events> getEvents() {
+	System.out.println("get All Events Called");
 		return events;
 	}
 
