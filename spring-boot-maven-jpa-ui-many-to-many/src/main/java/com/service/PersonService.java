@@ -1,6 +1,7 @@
 package com.service;
 
-import java.util.Set;
+import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,12 @@ public class PersonService {
 
 	@Autowired
 	private PersonRepository personRepository;
-
-	public void addPerson(Set<Person> persons) {
+	
+	public void addPerson(Collection<Person> persons) {
+		personRepository.save(persons);
+	}
+	
+	public void addPersonEvent(Collection<Person> persons) {
 		personRepository.save(persons);
 	}
 
@@ -22,7 +27,7 @@ public class PersonService {
 		personRepository.delete(id);
 	}
 
-	public Iterable<Person> getAllPerson() {
+	public List<Person> getAllPerson() {
 
 		/*
 		 * List<CurrentStudent> students = new ArrayList<CurrentStudent>();
@@ -31,6 +36,16 @@ public class PersonService {
 		 */
 		return personRepository.findAll();
 	}
+	public List<Person> getAllPersonEvents() {
+
+		/*
+		 * List<CurrentStudent> students = new ArrayList<CurrentStudent>();
+		 * Iterable<CurrentStudent> itr = currentStuRepository.findAll(); for
+		 * (CurrentStudent student : itr) { students.add(student); }
+		 */
+		return personRepository.findAll();
+	}
+	
 
 	public Person getPerson(int id) {
 		// TODO Auto-generated method stub

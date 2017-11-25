@@ -2,6 +2,7 @@ package com.model;
 
 import java.util.Collection;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,22 +11,25 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name = "person")
+@Entity
 public class Person {
-	
-	
+
 	@Id
 	@GeneratedValue
 	private int pId;
 	private String name;
 	private Long mobileNo;
 
-	/*@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "pId") }, inverseJoinColumns = {
-			@JoinColumn(name = "eventId") })*/
-	@ManyToMany(cascade= CascadeType.ALL)
+	/*
+	 * @JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "pId") },
+	 * inverseJoinColumns = {
+	 * 
+	 * @JoinColumn(name = "eventId") })
+	 */
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Collection<Events> events;
-	
+	private Collection<Events> eventsNames;
+
 	public Person(String name, Long mobileNo) {
 		super();
 		this.name = name;
@@ -40,10 +44,8 @@ public class Person {
 		super();
 		this.name = name;
 		this.mobileNo = mobileNo;
-		this.events = events;
+		this.eventsNames = events;
 	}
-
-
 
 	public int getpId() {
 		return pId;
@@ -70,12 +72,11 @@ public class Person {
 	}
 
 	public Collection<Events> getEvents() {
-	System.out.println("get All Events Called");
-		return events;
+		return eventsNames;
 	}
 
 	public void setEvents(Collection<Events> events) {
-		this.events = events;
+		this.eventsNames = events;
 	}
 
 }

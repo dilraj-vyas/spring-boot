@@ -1,12 +1,12 @@
 package com.controller;
 
 import java.util.HashSet;
+
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Events;
@@ -19,24 +19,27 @@ public class PersonController {
 	@Autowired(required = true)
 	private PersonService personService;
 
-	@RequestMapping("/allPerson")
-	public Iterable<Person> getAllPersons() {
-		return personService.getAllPerson();
-	}
 
+	
+	@RequestMapping("/allPerson")
+	public List<Person> getAllPersonEvents() {
+		return personService.getAllPersonEvents();
+	}
+	
 	/*
 	 * @RequestMapping("/student/{id}") public Customer
 	 * getStudentById(@PathVariable int id) { return
 	 * studentService.getStudent(id); }
 	 */
 
-	@RequestMapping(method = RequestMethod.POST, value = "/person")
-	public void addCustomer(@RequestBody Set<Person> persons) {
-		personService.addPerson(persons);
-	}
+	/*@RequestMapping(method = RequestMethod.POST, value = "/person")
+	public void addCustomer(@RequestBody Set<Person> Person) {
+		Personervice.addPerson(Person);
+	}*/
 
+	
 	@RequestMapping("/persons")
-	public void addPerson() {
+	public void addPersonEvent() {
 
 		Set<Events> event = new HashSet<Events>() {
 			{
@@ -45,7 +48,7 @@ public class PersonController {
 			}
 		};
 
-		Set<Person> persons = new HashSet<Person>() {
+		Set<Person> Person = new HashSet<Person>() {
 			{
 				add(new Person("Ankit Jain", Long.parseLong("9187545834"),
 						event));
@@ -58,7 +61,7 @@ public class PersonController {
 			}
 		};
 
-		personService.addPerson(persons);
+		personService.addPersonEvent(Person);
 	}
 
 	/*

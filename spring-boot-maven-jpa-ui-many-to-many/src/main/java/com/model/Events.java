@@ -2,12 +2,16 @@ package com.model;
 
 import java.util.Collection;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Entity(name = "events")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
 public class Events {
 
 	@Id
@@ -18,7 +22,8 @@ public class Events {
 	
 	
 //	@JoinTable(name = "personEvent", joinColumns = { @JoinColumn(name = "eventId") }, inverseJoinColumns = { @JoinColumn(name = "pId") })
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany(mappedBy = "eventsNames")
+	@JsonIgnore
 	private Collection<Person> persons;
 
 	public Events() {
