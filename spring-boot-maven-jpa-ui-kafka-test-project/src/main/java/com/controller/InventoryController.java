@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.model.Device;
+import com.producer.SimpleConsumer;
+import com.producer.SimpleProducerFireAndForget;
 import com.service.DeviceService;
 
 @RestController
@@ -26,11 +28,20 @@ public class InventoryController {
 	@RequestMapping("/device/{id}")
 	public Device getdeviceById(@PathVariable int id) {
 		return deviceService.getDevice(id);
+
+	}
+
+	@RequestMapping("/deviceDetails")
+	public Device getdevice() {
+		return SimpleConsumer.consume();
+		// return deviceService.getDevice(id);
+
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/devices")
 	public void addDevice(@RequestBody Device device) {
-		deviceService.addDevice(device);
+		SimpleProducerFireAndForget.produce(device);
+		// deviceService.addDevice(device);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/devices/{id}")
