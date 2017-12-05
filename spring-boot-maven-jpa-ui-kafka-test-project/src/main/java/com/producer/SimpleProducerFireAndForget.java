@@ -3,12 +3,10 @@ package com.producer;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-import com.kafka.serialize.Supplier;
 import com.model.Device;
 
 public class SimpleProducerFireAndForget {
@@ -39,10 +37,10 @@ public class SimpleProducerFireAndForget {
 //		producer.send(new ProducerRecord<String, Supplier>(topic, sp2)).get();
 //
 //		producer.close();
-		Device device1 = new Device();
-		device1.setDeviceName("SX-10");
-		device1.setDeviceIp("10.104.23.1");
-		produce(device1);
+//		Device device1 = new Device();
+//		device1.setDeviceName("SX-10");
+//		device1.setDeviceIp("10.104.23.1");
+//		produce(device1);
 		
 	}
 public static void produce(Device device)
@@ -53,7 +51,7 @@ public static void produce(Device device)
 	properties.put("bootstrap.servers", "localhost:9092");
 	properties.put("key.serializer",
 			"org.apache.kafka.common.serialization.StringSerializer");
-	properties.put("value.serializer", "com.kafka.serialize.MySerializer");
+	properties.put("value.serializer", "com.device.serialize.DeviceSerializer");
 	
 	producer = new KafkaProducer<String, Device>(properties);
 	String topic = "hello";
