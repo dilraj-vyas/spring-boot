@@ -42,5 +42,5 @@ public class DeviceController {
 			model.addAttribute("msg", "There is a problem inserting device");
 		return "home";
 	}
-
+//	https://www.codenotfound.com/spring-kafka-json-serializer-deserializer-example.html
 }
