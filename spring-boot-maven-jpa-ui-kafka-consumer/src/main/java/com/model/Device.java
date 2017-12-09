@@ -1,13 +1,16 @@
 package com.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "hello")
-public class Device {
+public class Device  implements Serializable {
 
+	private static final long serialVersionUID = -254830618567945985L;
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
