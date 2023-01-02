@@ -12,6 +12,12 @@ Add the following dependencies to your pom.xml file:
     <artifactId>h2</artifactId>
 </dependency>
 
-In your application.properties file, specify the following properties to configure the JPA and H2 integration:
 
 In your application.properties file, specify the following properties to configure the JPA and H2 integration:
+
+
+spring.jpa.hibernate.ddl-auto=create
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
