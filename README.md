@@ -17,7 +17,9 @@ In your application.properties file, specify the following properties to configu
 
 
 spring.jpa.hibernate.ddl-auto=create
+
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
+
 spring.datasource.username=sa
 spring.datasource.password=
